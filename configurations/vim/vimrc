@@ -1,0 +1,118 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'git://github.com/tpope/vim-obsession.git'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdcommenter'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'morhetz/gruvbox'
+Plugin 'taglist.vim'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+" air-line
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_splits = 1 "enable/disable displaying open splits per tab (only when tabs are opened). >
+let g:airline#extensions#tabline#show_buffers = 1 " enable/disable displaying buffers with a single tab
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#ale#enabled = 1 "enable/disable ale extensions
+let g:airline#extensions#branch#enabled = 1 "enable/disable fugitive ext.
+let g:airline#extensions#obsession#enabled = 1 "enable/disable obsession
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+if has('gui_running')
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ Light\ 10 " font for GUI window
+    set background=dark
+    colorscheme gruvbox
+else
+    colorscheme gruvbox
+    set background=dark
+endif
+
+" vim-rainbow
+let g:rainbow_active = 1
+
+" Key-Mappings
+map <C-o> :NERDTreeToggle<CR>  " NERDTree
+nnoremap <silent> <F8> :TlistToggle<CR>  " Taglist
+nnoremap <CR> :nohlsearch<CR><CR>  " turn off search highlighting with <CR> (carriage-return)
+
+
+"""" Tab settings
+
+set tabstop=4           " width that a <TAB> character displays as
+set expandtab           " convert <TAB> key-presses to spaces
+set shiftwidth=4        " number of spaces to use for each step of (auto)indent
+set softtabstop=4       " backspace after pressing <TAB> will remove up to this many spaces
+
+set autoindent          " copy indent from current line when starting a new line
+set smartindent         " even better autoindent (e.g. add indent after '{')
+
+
+"""" Search settings
+
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+
+
+
+"""" Miscellaneous settings that might be worth enabling
+
+set cursorline         " highlight current line
+"set background=dark    " configure Vim to use brighter colors
+"set autoread           " autoreload the file in Vim if it has been changed outside of Vim
+set number " show line numbers
+set updatetime=500      " let vim update every 500ms
